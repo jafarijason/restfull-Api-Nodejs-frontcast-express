@@ -14,4 +14,17 @@ router.post("/", (req, res, next) => {
   });
 });
 
+router.get("/:productId", (req, res, next) => {
+  const id = req.params.productId;
+  if (id === "book") {
+    res.status(200).json({
+      msg: "book",
+    });
+  } else {
+    res.status(400).json({
+      msg:"Product not found"
+    })
+  }
+});
+
 module.exports = router;
