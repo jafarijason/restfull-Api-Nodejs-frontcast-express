@@ -2,11 +2,8 @@ const express = require("express");
 
 const app = express()
 
-app.use((req,res,next)=>{
-  res.status(200).json({
-    msg:'REST API OK'
-  })
-})
-
+const productRoutes = require('./routes/products')
+ 
+app.use('/products',productRoutes)
 
 app.listen(3000)
