@@ -27,4 +27,12 @@ router.get("/:productId", (req, res, next) => {
   }
 });
 
+
+router.delete('/:productId',(req, res, next) =>{
+  res.status(200).json({
+    msg:'delete Product',
+    productId : req.params.productId 
+  })
+})
+
 module.exports = router;
