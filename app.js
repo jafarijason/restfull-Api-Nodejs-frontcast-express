@@ -1,10 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const app = express();
 
 const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
+
+const mongooseconnectUri = require("./Databaseacsees/databaseAccess");
+// console.log(mongooseconnectUri)
+mongoose.connect(mongooseconnectUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
