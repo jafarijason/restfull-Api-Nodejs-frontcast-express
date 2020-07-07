@@ -6,14 +6,14 @@ const Product = require("../models/product");
 
 router.get("/", (req, res, next) => {
   Product.find()
-    .then(result=>{
-      console.log(result)
-      res.status(200).json(result)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
     })
-    .catch(err=>{
-      console.log(err)
-      res.status(500).json(err)
-    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.post("/", (req, res, next) => {
@@ -51,14 +51,20 @@ router.get("/:productId", (req, res, next) => {
         error: err,
       });
     });
-  
 });
 
 router.delete("/:productId", (req, res, next) => {
-  res.status(200).json({
-    msg: "delete Product",
-    productId: req.params.productId,
-  });
+  const id = req.params.productId;
+  Product.remove({ _id: id })
+    .then(result=>{
+      console.log(result)
+      res.status(200).json(result)
+    })
+      .catch(err=>{
+        console.log(err)
+        res.status(500).json(err)
+      });
+   
 });
 
 module.exports = router;
