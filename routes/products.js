@@ -27,31 +27,25 @@ router.post("/", (req, res, next) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({
-        error:err
-      })
+        error: err,
+      });
     });
-
-  // const product = {
-  //   title: req.body.title,
-  //   price: req.body.price,
-  // };
-  // res.status(200).json({
-  //   msg: "POST from Products",
-  //   createdProduct: product,
-  // });
 });
 
 router.get("/:productId", (req, res, next) => {
   const id = req.params.productId;
-  if (id === "book") {
-    res.status(200).json({
-      msg: "book",
+  Product.findById(id)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
     });
-  } else {
-    res.status(400).json({
-      msg: "Product not found",
-    });
-  }
+  
 });
 
 router.delete("/:productId", (req, res, next) => {
