@@ -28,15 +28,6 @@ router.post("/", (req, res, next) => {
       console.log(err);
       res.status(500).json({ error: err });
     });
-
-  // const order = {
-  //   productId: req.body.productId,
-  //   qty: req.body.qty,
-  // };
-  // res.status(200).json({
-  //   msg: "POST   orders",
-  //   order: order,
-  // });
 });
 
 router.get("/:orderId", (req, res, next) => {
