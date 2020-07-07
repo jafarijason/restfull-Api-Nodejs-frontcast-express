@@ -7,9 +7,18 @@ const mongoose = require("mongoose"); // We want use Object Id for generating Id
 const Order = require("../models/order");
 
 router.get("/", (req, res, next) => {
-  res.status(200).json({
-    msg: "GET   orders",
-  });
+  Order.find()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+
+  // res.status(200).json({
+  //   msg: "GET   orders",
+  // });
 });
 
 router.post("/", (req, res, next) => {
@@ -31,15 +40,15 @@ router.post("/", (req, res, next) => {
 });
 
 router.get("/:orderId", (req, res, next) => {
-  const id = req.params.orderId
+  const id = req.params.orderId;
   Order.findById(id)
-    .then(result=>{
-      res.status(200).json(result)
+    .then((result) => {
+      res.status(200).json(result);
     })
-    .catch(err=>{
-      console.log(err)
-      res.status(500).json(err)
-    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.delete("/:orderId", (req, res, next) => {
