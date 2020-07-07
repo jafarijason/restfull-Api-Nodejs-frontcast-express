@@ -7,7 +7,17 @@ const productRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Controll-Allow-Origin", "*");
+  res.header("Access-Controll-Allow-Headers", "*");
+  if (req.method === "OPTIONS") {
+    res.header("Access-Controll-Allow-Methods", "*");
+    return res.status(200).json();
+  }
+  next();
+});
 
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
