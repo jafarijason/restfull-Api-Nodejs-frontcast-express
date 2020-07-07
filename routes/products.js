@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const prouct = {
+  const product = {
     title: req.body.title,
     price: req.body.price,
   };
