@@ -48,10 +48,15 @@ router.get("/:orderId", (req, res, next) => {
 });
 
 router.delete("/:orderId", (req, res, next) => {
-  res.status(200).json({
-    msg: "Delete Order",
-    orderId: req.params.orderId,
-  });
+  const id = req.params.orderId;
+  Order.deleteOne({ _id: id })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
