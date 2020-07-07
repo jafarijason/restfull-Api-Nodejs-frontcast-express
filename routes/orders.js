@@ -40,10 +40,6 @@ router.get("/:orderId", (req, res, next) => {
       console.log(err)
       res.status(500).json(err)
     })
-  // res.status(200).json({
-  //   msg: "Order Detailes",
-  //   orderId: req.params.orderId,
-  // });
 });
 
 router.delete("/:orderId", (req, res, next) => {
