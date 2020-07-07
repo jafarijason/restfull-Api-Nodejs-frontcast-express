@@ -5,9 +5,15 @@ const router = express.Router();
 const Product = require("../models/product");
 
 router.get("/", (req, res, next) => {
-  res.status(200).json({
-    msg: "GET from Products",
-  });
+  Product.find()
+    .then(result=>{
+      console.log(result)
+      res.status(200).json(result)
+    })
+    .catch(err=>{
+      console.log(err)
+      res.status(500).json(err)
+    })
 });
 
 router.post("/", (req, res, next) => {
